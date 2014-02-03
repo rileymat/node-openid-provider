@@ -191,6 +191,19 @@ suite("OpenIDProvider tests", function() {
       assert.equal(response.get("ns"), "http://specs.openid.net/auth/2.0");
       assert.equal(response.get("is_valid"), "false");
     });
+
+    test("Generate error response", function() {
+      var options = {
+        return_to: "http://example.com/foo"
+      };
+      var parsedUrl = urllib.parse(provider.error(options, "An error."), true);
+
+      assert.equal(parsedUrl.query["openid.mode"], "error", "Incorrect mode.");
+      assert.equal(parsedUrl.query["openid.ns"], "http://specs.openid.net/auth/2.0", "Incorrect namespace.");
+      assert.equal(parsedUrl.query["openid.error"], "An error.", "Incorrect message.");
+      assert.equal(parsedUrl.hostname, "example.com", "Incorrect hostname.");
+      assert.equal(parsedUrl.pathname, "/foo", "Incorrect path.");
+    });
   });
 
   suite("Middleware tests", function() {
