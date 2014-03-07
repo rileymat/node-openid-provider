@@ -1,8 +1,8 @@
 var assert = require('assert');
 var utils = require('../lib/Utils.js');
 
-suite("Response Tests", function() {
-    
+suite("Utilities Tests", function() {
+
     test("Test addOpenIDNamespace", function() {
         var incoming = {
             first: "one",
@@ -17,7 +17,7 @@ suite("Response Tests", function() {
         var result = utils.addOpenIDNamespace(incoming);
         assert.deepEqual(result, outgoing);
     });
-    
+
     test("Test getOpenIDFields", function() {
         var incoming = {
             "openid.first": "one",
@@ -34,5 +34,5 @@ suite("Response Tests", function() {
         var result = utils.getOpenIDFields(incoming);
         assert.deepEqual(result, outgoing);
     });
-    
+
 });
