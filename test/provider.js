@@ -193,6 +193,7 @@ suite("OpenIDProvider tests", function() {
     });
 
     test("Generate error response", function() {
+      var provider = new OpenIDProvider("http://oidp.com");
       var options = {
         return_to: "http://example.com/foo"
       };
@@ -204,6 +205,7 @@ suite("OpenIDProvider tests", function() {
       assert.equal(parsedUrl.hostname, "example.com", "Incorrect hostname.");
       assert.equal(parsedUrl.pathname, "/foo", "Incorrect path.");
     });
+
   });
 
   suite("Middleware tests", function() {
